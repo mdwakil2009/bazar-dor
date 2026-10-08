@@ -1,4 +1,5 @@
 
+import Banner from "@/components/Banner";
 import Marquee from "@/components/Marquee";
 import { Suspense } from "react";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <Suspense fallback={<p>loading...</p>}>
       <Marquee></Marquee>
       </Suspense>
+      <Banner></Banner>
 
       HomePage
     </div>

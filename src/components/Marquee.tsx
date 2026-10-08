@@ -2,7 +2,7 @@ import React from 'react';
 import MarqueeText from 'react-marquee-text';
 interface IProduct {
   id: number;
-  categoryIcon: string;
+  image: string;
   nameBn: string;
   today: number;
   unit: string;
@@ -12,18 +12,18 @@ interface IProduct {
   };
 }
 const Marquee = async() => {
-     const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products")
+     const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products")
      const data = await res.json()
      const headline:IProduct[] = data 
 
      return (
           <div>
                <div > 
-                    <MarqueeText direction='right' duration={10}>   
+                    <MarqueeText direction='right' duration={8} pauseOnHover={true}>   
                   {
                     headline.map((products,)=>(
-                         <span key={products.id} className=' flex items-center gap-2 px-8 border-b border-r p-2  bg-white border-gray-100'>
-                         <span>{products.categoryIcon}</span>
+                         <span key={products.id} className=' flex items-center gap-2 px-8 border-b border-r p-2  bg-[#FFFFFF] border-gray-100'>
+                         <span>{products.image}</span>
                          <span>{products.nameBn}</span>
                          <span>
                          {products.today.toLocaleString("bn-BD")} টাকা/ {products.unit === "kg" ? "কেজি" : products.unit === "liter" ? "লিটার" : products.unit === "piece" ? "পিস" : "ডজন"}

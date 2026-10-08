@@ -23,7 +23,7 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
 
  
   useEffect(() => {
-    fetch("https://api.api-store.workers.dev/api/bazardor/categories")
+    fetch("https://api.abcz.workers.dev/api/bazardor/categories")
       .then((res) => res.json())
       .then((data:ICategoty[]) => {
         setCategories(data);
@@ -32,8 +32,8 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
   }, []);
 
   return (
-    <header>
-      <div className="max-w-6xl mx-auto flex items-center justify-between py-4">
+    <header className="bg-[#FFFFFF]">
+      <div className="max-w-6xl mx-auto flex items-center justify-between py-4 ">
         <div className="flex items-center gap-4">
           <Image
             className="bg-green-700 rounded-2xl p-3"
@@ -62,7 +62,7 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
         </div>
       </div>
              <nav className="border-y border-gray-200">
-        <div className="max-w-6xl mx-auto flex  gap-8 p-3">
+        <div className="max-w-6xl mx-auto flex  gap-8 p-2">
           {categories.map((category) => (
             <Link
               key={category?.id}
