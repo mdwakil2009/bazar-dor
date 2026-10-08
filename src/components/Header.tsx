@@ -4,7 +4,6 @@ interface ICategoty {
      nameBn:string
      icon:string
 }
-import baseUrl from "@/Services/baseUrl";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -24,15 +23,13 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
 
  
   useEffect(() => {
-    fetch(baseUrl)
+    fetch("https://api.api-store.workers.dev/api/bazardor/categories")
       .then((res) => res.json())
       .then((data:ICategoty[]) => {
         setCategories(data);
       })
       .catch((err) => console.log(err));
   }, []);
-
-  console.log("Categories:", categories);
 
   return (
     <header>
@@ -55,22 +52,22 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
         </div>
       
         <div className="flex items-center gap-5">
-          <button className="px-4 py-3 rounded-2xl font-semibold hover:bg-gray-300 transition-colors">
+          <button className="px-4 py-3 rounded-md font-semibold hover:bg-gray-300 transition-colors">
             সাইন ইন
           </button>
 
-          <button className="px-4 py-3 rounded-2xl font-semibold bg-green-700 text-white">
+          <button className="px-4 py-3 rounded-md font-semibold bg-green-700 text-white">
             সাইন আপ
           </button>
         </div>
       </div>
              <nav className="border-y border-gray-200">
-        <div className="max-w-6xl mx-auto flex  gap-8 py-3">
+        <div className="max-w-6xl mx-auto flex  gap-8 p-3">
           {categories.map((category) => (
             <Link
               key={category?.id}
               href={`/category/${category?.id}`}
-              className=" flex gap-1 font-medium hover:text-green-700 transition-colors"
+              className=" flex gap-1 font-bold px-2 py-2 rounded-md hover:bg-gray-300 transition-colors "
             >
               <span>{category?.icon}</span>
               <span>{category?.nameBn}</span>

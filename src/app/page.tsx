@@ -1,12 +1,15 @@
 
-
-import Header from "@/components/Header";
+import Marquee from "@/components/Marquee";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <div>
-      <Header></Header>
-    
+      <Suspense fallback={<p>loading...</p>}>
+      <Marquee></Marquee>
+      </Suspense>
+
+      HomePage
     </div>
   );
 }
