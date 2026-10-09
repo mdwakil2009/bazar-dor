@@ -4,7 +4,7 @@ interface IProduct {
   id: number;
   slug: string;
   nameBn: string;
-  categoryIcon: string;
+image: string;
   unit: string;
   today: number;
   change: {

@@ -1,6 +1,7 @@
 
 import { Suspense } from "react";
 import CategoryProductContent from "@/components/CategoryProductContent";
+import Link from "next/link";
 
 interface IProps {
   params: Promise<{
@@ -10,9 +11,16 @@ interface IProps {
 
 const CategoryProduct = ({ params }: IProps) => {
   return (
-    <Suspense fallback={<p className="p-5">লোড হচ্ছে...</p>}>
+     <div>  
+    <Suspense fallback={<p className="p-5">loading...</p>}>
       <CategoryProductContent params={params} />
     </Suspense>
+
+    <div>
+    </div>
+ </div>
+
+
   );
 };
 

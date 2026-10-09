@@ -1,3 +1,4 @@
+
 import baseUrl from '@/services/baseUrl';
 import MarqueeText from 'react-marquee-text';
 interface IProduct {
@@ -22,12 +23,12 @@ const Marquee = async() => {
                     <MarqueeText direction='right' duration={8} pauseOnHover={true}>   
                   {
                     headline.map((products,)=>(
-                         <span key={products.id} className=' flex items-center gap-2 px-8 border-b border-r p-2  bg-[#FFFFFF] border-gray-100'>
+                         <span key={products.id} className=' flex items-center gap-2 px-8  border-b border-r p-2  bg-[#FFFFFF] border-gray-100'>
                          <span>{products.image}</span>
                          <span>{products.nameBn}</span>
                          <span>
                          {products.today.toLocaleString("bn-BD")} টাকা/ {products.unit === "kg" ? "কেজি" : products.unit === "liter" ? "লিটার" : products.unit === "piece" ? "পিস" : "ডজন"}
-</span>
+                          </span>
                    
 
                              <span className={products.change.dir==="up"? "text-green-700": "text-red-700"}>{products.change.dir === "up" ? "▲" : "▼"}

@@ -4,7 +4,7 @@ interface IProduct {
   id: number;
   slug: string;
   nameBn: string;
-  categoryIcon: string;
+ image: string;
   unit: string;
   today: number;
   change: {
@@ -34,7 +34,7 @@ const changeIcon =
       
         <div className="flex items-center gap-3">
           <div className="flex h-12 w-12  items-center justify-center rounded-lg bg-gray-50 text-3xl">
-            {product.categoryIcon}
+            {product.image}
           </div>
 
           <div>

@@ -9,7 +9,7 @@ interface Product {
   nameBn: string;
   today: number;
   unit: string;
-  categoryIcon: string;
+image: string;
   change: {
     dir: "up" | "down" | "flat";
     pct: number;
