@@ -1,4 +1,4 @@
-import React from 'react';
+import baseUrl from '@/services/baseUrl';
 import MarqueeText from 'react-marquee-text';
 interface IProduct {
   id: number;
@@ -12,7 +12,7 @@ interface IProduct {
   };
 }
 const Marquee = async() => {
-     const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products")
+     const res = await fetch(baseUrl)
      const data = await res.json()
      const headline:IProduct[] = data 
 

@@ -3,6 +3,7 @@ interface ICategoty {
      id:string
      nameBn:string
      icon:string
+     slug:string
 }
 import Image from "next/image";
 import Link from "next/link";
@@ -66,7 +67,7 @@ const [categories, setCategories] = useState<ICategoty[]>([]);
           {categories.map((category) => (
             <Link
               key={category?.id}
-              href={`/category/${category?.id}`}
+              href={`/category/${category?.slug}`}
               className=" flex gap-1 font-bold px-2 py-2 rounded-md hover:bg-gray-300 transition-colors "
             >
               <span>{category?.icon}</span>

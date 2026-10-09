@@ -22,7 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-base-300 ">
+      <body className="min-h-full flex flex-col  bg-[#E1E8E1]">
        <Header></Header>
         {children}
         
