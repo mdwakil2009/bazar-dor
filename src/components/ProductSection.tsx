@@ -1,3 +1,4 @@
+import baseUrl from "@/services/baseUrl";
 import ProductGrid from "./ProductGrid";
 import SortProducts from "./SortProducts";
 
@@ -14,7 +15,7 @@ interface IProduct {
   };
 }
 const ProductSections = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(baseUrl);
 
   const products = await res.json();
 
