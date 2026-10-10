@@ -49,7 +49,7 @@ const ProductSections = async () => {
           
         <ProductGrid products={downProduct} />
       </section>
-      <div>
+      <div id="all-products" className="scroll-mt-24">
          <h2 className="text-2xl font-bold text-gray-800">
         সব পণ্য
       </h2>

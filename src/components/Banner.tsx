@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -21,7 +20,7 @@ const [date ,setDate] = useState('')
                     <p className="text-green-700 btn rounded-3xl ">{date}</p>
                     <h2 className="text-5xl font-bold ">আজকের বাজারের দাম এক নজরে</h2>
                     <p className="text-gray-500">চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।</p>
-                   <Link  href="/#all-products"><button className="btn bg-green-700 font-bold text-white">সব পণ্য দেখুন ➜</button></Link>
+                   <a  href="/#all-products"><button className="btn bg-green-700 font-bold text-white">সব পণ্য দেখুন ➜</button></a>
                     </div>
                     <div className="flex justify-center items-center" >
                          <Image src={'/bazar-hero.png'} width={400} height={400} alt="hero logo"></Image>

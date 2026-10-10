@@ -19,11 +19,11 @@ const Marquee = async() => {
 
      return (
           <div>
-               <div > 
-                    <MarqueeText direction='right' duration={8} pauseOnHover={true}>   
+               <div className='bg-[#FFFFFF]' > 
+                    <MarqueeText direction='right' duration={10} pauseOnHover={true}>   
                   {
                     headline.map((products,)=>(
-                         <span key={products.id} className=' flex items-center gap-2 px-8  border-b border-r p-2  bg-[#FFFFFF] border-gray-100'>
+                         <span key={products.id} className=' flex items-center gap-2 px-8  border-b border-r p-2   border-gray-100'>
                          <span>{products.image}</span>
                          <span>{products.nameBn}</span>
                          <span>

@@ -1,6 +1,6 @@
 import baseUrl from "@/services/baseUrl";
-import ProductGrid from "./ProductGrid";
 import AllProducts from "./AllProduct";
+import { notFound } from "next/navigation";
 
 interface ICategory {
   id: number;
@@ -37,9 +37,13 @@ const CategoryProductContent = async ({ params }: IProps) => {
   const categoryProduct = await getCategoryProduct(categorySlug);
   const categories = await getcategories();
 
-  const currentCategory = categories.find(
-    (c: ICategory) => c.slug === categorySlug,
-  );
+const currentCategory = categories.find(
+  (c: ICategory) => c.slug === categorySlug,
+);
+
+if (!currentCategory) {
+  notFound();
+}
 
   return (
     <div>
