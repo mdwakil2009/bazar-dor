@@ -1,6 +1,5 @@
 import baseUrl from "@/services/baseUrl";
 import ProductGrid from "./ProductGrid";
-import SortProducts from "./SortProducts";
 import AllProducts from "./AllProduct";
 
 interface IProduct {

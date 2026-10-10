@@ -42,15 +42,12 @@ const getUnitText = (unit: string): string =>
     liter: "লিটার",
     piece: "পিস",
   })[unit.toLowerCase()] ?? unit;
-
-const getSingleProduct = async (slug: string): Promise<Product | undefined> => {
-  const res = await fetch(baseUrl, {
-    cache: "no-store",
-  });
+const getSingleProduct = async (slug: string): Promise<Product | null> => {
+  const res = await fetch(baseUrl);
 
   const data: Product[] = await res.json();
 
-  return data.find((item) => item.slug === slug);
+  return data.find((item) => item.slug === slug) ?? null;
 };
 
 const ProductDetailsContent = async ({ params }: IProps) => {
@@ -60,19 +57,24 @@ const ProductDetailsContent = async ({ params }: IProps) => {
   if (!product) {
     notFound();
   }
-const markets = product.markets ?? [];
+  const markets = product.markets ?? [];
 
-const minPrice = Math.min(...markets.map(m => m.min));
-const maxPrice = Math.max(...markets.map(m => m.max));
+const minPrice = markets.length
+  ? Math.min(...markets.map((market) => market.min))
+  : product.today;
+
+const maxPrice = markets.length
+  ? Math.max(...markets.map((market) => market.max))
+  : product.today;
 
 const averagePrice = markets.length
-  ? (minPrice + maxPrice) / 2
+  ? markets.reduce((sum, market) => sum + (market.min + market.max) / 2, 0) / markets.length
   : product.today;
 
 const sortedMarkets = [...markets].sort((a, b) => a.min - b.min);
-  const isUp = product.change.dir === "up";
-  const unitBn = getUnitText(product.unit);
 
+const isUp = product.change.dir === "up";
+const unitBn = getUnitText(product.unit);
   return (
     <main className="  bg-[#f3f6f3] px-4 py-6 text-gray-800 ">
       <div className="max-w-6xl  mx-auto space-y-6">

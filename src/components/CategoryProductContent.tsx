@@ -1,4 +1,4 @@
-import baseUrl from "@/services/baseUrl";
+import baseUrl, { categoryUrl } from "@/services/baseUrl";
 import AllProducts from "./AllProduct";
 import { notFound } from "next/navigation";
 
@@ -16,9 +16,7 @@ interface IProps {
 }
 
 const getcategories = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories",
-  );
+  const res = await fetch(categoryUrl);
 
   const data = await res.json();
   return data;
