@@ -1,6 +1,6 @@
-
 import baseUrl from "@/services/baseUrl";
-import SortProducts from "@/components/SortProducts";
+import ProductGrid from "./ProductGrid";
+import AllProducts from "./AllProduct";
 
 interface ICategory {
   id: number;
@@ -17,7 +17,7 @@ interface IProps {
 
 const getcategories = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+    "https://api.api-store.workers.dev/api/bazardor/categories",
   );
 
   const data = await res.json();
@@ -41,7 +41,6 @@ const CategoryProductContent = async ({ params }: IProps) => {
     (c: ICategory) => c.slug === categorySlug,
   );
 
-  
   return (
     <div>
       <div className="mx-auto mt-5 max-w-6xl px-4">
@@ -55,23 +54,18 @@ const CategoryProductContent = async ({ params }: IProps) => {
               {currentCategory.nameBn}
             </h1>
 
-            <p className="mt-1 text-sm text-gray-500">
-              {categoryProduct.length.toLocaleString("bn-BD")} 
+            <p className=" text-sm text-gray-500">
+              {categoryProduct.length.toLocaleString("bn-BD")}
               টি পণ্যের আজকের দাম ও পরিবর্তন
             </p>
           </div>
         </div>
 
-        <div className="mt-6">
-          <div className="mb-5 flex items-center justify-between gap-3 border-b border-gray-200 pb-3">
-            <p className="text-sm text-gray-600">
-              মোট <span className="font-semibold text-gray-800">
-                {categoryProduct.length.toLocaleString("bn-BD")}
-              </span> টি পণ্য দেখানো হচ্ছে
-            </p>
-          </div>
+        <div className="mt-10" >
+          <AllProducts products={categoryProduct} />
+        </div>
 
-          <SortProducts products={categoryProduct} />
+        <div>
         </div>
       </div>
     </div>
@@ -79,4 +73,3 @@ const CategoryProductContent = async ({ params }: IProps) => {
 };
 
 export default CategoryProductContent;
-

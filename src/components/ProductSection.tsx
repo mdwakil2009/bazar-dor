@@ -1,6 +1,7 @@
 import baseUrl from "@/services/baseUrl";
 import ProductGrid from "./ProductGrid";
 import SortProducts from "./SortProducts";
+import AllProducts from "./AllProduct";
 
 interface IProduct {
   id: number;
@@ -20,11 +21,11 @@ const ProductSections = async () => {
   const products = await res.json();
 
   const upProduct = products
-    .filter((product:IProduct) => product.change?.dir === "up")
+    .filter((product: IProduct) => product.change?.dir === "up")
     .slice(0, 6);
 
   const downProduct = products
-    .filter((product:IProduct) => product.change?.dir === "down")
+    .filter((product: IProduct) => product.change?.dir === "down")
     .slice(0, 6);
 
   return (
@@ -45,24 +46,15 @@ const ProductSections = async () => {
           <span className="text-green-700">▼</span>
           <h2 className="text-2xl font-semibold text-gray-800">আজ দাম কমেছে</h2>
         </div>
-
+          
         <ProductGrid products={downProduct} />
       </section>
-
-      <section>
-        <div className="mb-5">
-          <h2 className="text-2xl font-bold text-gray-800">সব পণ্য</h2>
-       <div className="flex items-center justify-between">
-          <p className="mt-1 text-sm text-gray-500">
-         মোট {products.length.toLocaleString("bn-BD")} টি পণ্য দেখানো হচ্ছে </p>
-
-        </div>
-        <SortProducts products={products} />
-       </div>
-       
-         
-       <ProductGrid products={products} />
-      </section>
+      <div>
+         <h2 className="text-2xl font-bold text-gray-800">
+        সব পণ্য
+      </h2>
+      <AllProducts products={products} />
+      </div>
     </div>
   );
 };

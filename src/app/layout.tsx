@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Marquee from "@/components/Marquee";
 import { Suspense } from "react";
+import Footer from "@/components/Footer";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   variable: "--font-geist-mono",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header></Header>
         <Marquee></Marquee>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );

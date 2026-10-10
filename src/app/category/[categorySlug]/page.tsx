@@ -1,7 +1,6 @@
 
 import { Suspense } from "react";
 import CategoryProductContent from "@/components/CategoryProductContent";
-import Link from "next/link";
 
 interface IProps {
   params: Promise<{

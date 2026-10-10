@@ -1,10 +1,11 @@
+
 import ProductCard from "./ProductCard";
 
 interface IProduct {
   id: number;
   slug: string;
   nameBn: string;
-image: string;
+  image: string;
   unit: string;
   today: number;
   change: {
@@ -21,10 +22,12 @@ const ProductGrid = ({ products }: ProductGridProps) => {
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
       {products.map((product) => (
-        <ProductCard
+        <div
           key={product.id}
-          product={product}
-        />
+          className="overflow-hidden rounded-2xl border border-transparent hover:border-green-500 hover:shadow-md"
+        >
+          <ProductCard product={product} />
+        </div>
       ))}
     </div>
   );
