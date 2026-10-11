@@ -3,6 +3,7 @@ import { authClient } from "@/lib/auth-client";
 import { github } from "better-auth";
 import Link from "next/link";
 import React from "react";
+import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
@@ -17,10 +18,12 @@ const SignInPage = () => {
       callbackURL:"/"
     })
     if(data){
-      return data
+      console.log(data)
+      toast.success("সাইন ইন সফল হয়েছে। ")
     }
     if(error){
-      return data 
+      console.log(error)
+      toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়। আবার চেষ্টা করুন।")
     }
  
   }
@@ -95,12 +98,12 @@ const SignInPage = () => {
         </div>
 
         <div className=" flex gap-4 space-y-3">
-          <button onClick={handelGoogleSignIn} type="button" className="btn btn-outline  border-gray-300">
+          <button onClick={handelGoogleSignIn} className="btn btn-outline  border-gray-300">
             <FcGoogle />
             Google দিয়ে চালিয়ে যান
           </button>
 
-          <button onClick={ handelGitHubSignIn} type="button" className="btn btn-outline  border-gray-300">
+          <button onClick={ handelGitHubSignIn}  className="btn btn-outline  border-gray-300">
             <FaGithub />
             GitHub দিয়ে চালিয়ে যান
           </button>

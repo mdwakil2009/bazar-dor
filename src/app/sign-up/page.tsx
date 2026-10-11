@@ -1,6 +1,6 @@
 "use client"
 import { authClient } from "@/lib/auth-client";
-import { google } from "better-auth";
+import toast from "react-hot-toast";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
@@ -17,13 +17,30 @@ const onSubmit = async(e:React.SubmitEvent<HTMLElement>)=>{
           callbackURL:"/"
      })
 if(data){
-     return data
-     redirect("/")
+  toast.success("সাইন ইন সফল হয়েছে। ")
+  console.log(data)
+  redirect("/")
 }
 if(error){
-    return error 
+    console.log(error)
+     toast.error("ইমেইল অথবা পাসওয়ার্ড সঠিক নয়। আবার চেষ্টা করুন।")
 }
 }
+ const handelGoogleSignUP = async () => {
+   await authClient.signIn.social({
+    provider: "google",
+  });
+
+ toast.error("Google দিয়ে লগইন করা যায়নি!");
+};
+
+const handelGitHubSignIn = async () => {
+ await authClient.signIn.social({
+    provider: "github",
+  });
+
+   toast.error("GitHub দিয়ে লগইন করা যায়নি!");
+};
 
   return (
     <main className="min-h-screen bg-gray-50 px-4 py-12">
@@ -119,7 +136,7 @@ if(error){
         </div>
 
         <div className=" flex gap-4 space-y-3">
-          <button  type="button"
+          <button onClick={handelGoogleSignUP}
             className="btn btn-outline  border-gray-300"
           >
             <FcGoogle />
@@ -127,8 +144,7 @@ if(error){
 
           </button>
 
-          <button
-            type="button"
+          <button onClick={handelGitHubSignIn}
             className="btn btn-outline  border-gray-300"
           >
            <FaGithub />

@@ -10,9 +10,7 @@ interface ICategory {
 }
 
 interface IProps {
-  params: Promise<{
-    categorySlug: string;
-  }>;
+  categorySlug: string;
 }
 
 const getcategories = async () => {
@@ -29,8 +27,8 @@ const getCategoryProduct = async (categorySlug: string) => {
   return data;
 };
 
-const CategoryProductContent = async ({ params }: IProps) => {
-  const { categorySlug } = await params;
+const CategoryProductContent = async ({ categorySlug  }: IProps) => {
+
 
   const categoryProduct = await getCategoryProduct(categorySlug);
   const categories = await getcategories();
