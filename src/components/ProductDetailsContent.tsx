@@ -43,6 +43,7 @@ const getUnitText = (unit: string): string =>
     litre: "লিটার",
     liter: "লিটার",
     piece: "পিস",
+    dozen: "ডজন"
   })[unit.toLowerCase()] ?? unit;
 
 const getSingleProduct = async (
