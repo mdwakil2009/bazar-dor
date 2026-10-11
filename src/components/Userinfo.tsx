@@ -17,7 +17,6 @@ const Userinfo = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdown = useRef<HTMLDivElement>(null);
 
- 
   const getUserName = (): string => {
     const name = user?.name;
 
@@ -33,7 +32,6 @@ const Userinfo = () => {
       }
     }
 
-   
     if (user?.email) {
       return user.email.split("@")[0];
     }
@@ -43,7 +41,6 @@ const Userinfo = () => {
 
   const userName = getUserName();
 
- 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -61,36 +58,35 @@ const Userinfo = () => {
     };
   }, []);
 
-  
-const handleSignOut = async () => {
- await authClient.signOut();
+  const handleSignOut = async () => {
+    await authClient.signOut();
 
-
-  setIsOpen(false);
-  toast.success("সফলভাবে সাইন আউট হয়েছে!");
-  router.push("/");
-};
+    setIsOpen(false);
+    toast.success("সফলভাবে সাইন আউট হয়েছে!");
+    router.push("/");
+  };
 
   if (isPending) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center justify-center gap-2">
         <span className="loading loading-spinner loading-sm" />
       </div>
     );
   }
 
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex w-full items-center justify-end">
       {user ? (
         <div className="relative" ref={dropdown}>
           <button
             type="button"
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
-            className="btn btn-ghost flex items-center gap-2 rounded-md px-3 py-2"
+            aria-label="User menu"
+            className="btn btn-ghost flex max-w-full items-center gap-1 rounded-md px-2 py-2 sm:gap-2 sm:px-3"
           >
-            <div className="avatar">
-              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-green-600 text-sm font-bold text-white">
+            <div className="avatar shrink-0">
+              <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-green-600 text-sm font-bold text-white sm:h-9 sm:w-9">
                 {user.image ? (
                   <img
                     src={user.image}
@@ -98,28 +94,26 @@ const handleSignOut = async () => {
                     className="h-full w-full object-cover"
                   />
                 ) : (
-                  <span>
-                    {userName.charAt(0).toUpperCase()}
-                  </span>
+                  <span>{userName.charAt(0).toUpperCase()}</span>
                 )}
               </div>
             </div>
 
-            <span className="max-w-32 truncate text-sm font-bold">
+            <span className="max-w-24 truncate text-xs font-bold sm:max-w-32 sm:text-sm md:max-w-40">
               {userName}
             </span>
 
-            <span className="text-xs text-gray-400">▾</span>
+            <span className="shrink-0 text-xs text-gray-400">▾</span>
           </button>
 
           {isOpen && (
-            <div className="absolute right-0 z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-              <div className="border-b border-gray-200 px-4 py-4">
+            <div className="absolute right-0 z-50 mt-2 w-64 max-w-[calc(100vw-1.5rem)] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg sm:w-72">
+              <div className="border-b border-gray-200 px-3 py-3 sm:px-4 sm:py-4">
                 <p className="truncate text-sm font-semibold text-gray-900">
                   {userName}
                 </p>
 
-                <p className="mt-1 truncate text-xs text-gray-500">
+                <p className="mt-1 break-all text-xs text-gray-500">
                   {user.email}
                 </p>
               </div>
@@ -127,16 +121,16 @@ const handleSignOut = async () => {
               <Link
                 href="/profile"
                 onClick={() => setIsOpen(false)}
-                className="flex w-full items-center gap-3 px-4 py-3 text-sm text-gray-700 transition-colors hover:bg-blue-50"
+                className="flex w-full items-center gap-3 px-3 py-3 text-sm text-gray-700 transition-colors hover:bg-blue-50 sm:px-4"
               >
-                <FaUser className="text-base text-blue-600" />
+                <FaUser className="shrink-0 text-base text-blue-600" />
                 <span>আমার প্রোফাইল</span>
               </Link>
 
               <button
                 type="button"
                 onClick={handleSignOut}
-                className="flex w-full items-center gap-3 border-t border-gray-100 px-4 py-3 text-left text-sm text-red-600 transition-colors hover:bg-red-50"
+                className="flex w-full items-center gap-3 border-t border-gray-100 px-3 py-3 text-left text-sm text-red-600 transition-colors hover:bg-red-50 sm:px-4"
               >
                 <span>↩ সাইন আউট</span>
               </button>
@@ -144,17 +138,17 @@ const handleSignOut = async () => {
           )}
         </div>
       ) : (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <Link
             href="/sign-in"
-            className="rounded-md px-4 py-3 font-semibold transition-colors hover:bg-gray-200"
+            className="whitespace-nowrap rounded-md px-2 py-2 text-xs font-semibold transition-colors hover:bg-gray-200 sm:px-4 sm:py-3 sm:text-sm"
           >
             সাইন ইন
           </Link>
 
           <Link
             href="/sign-up"
-            className="rounded-md bg-green-700 px-4 py-3 font-semibold text-white transition-colors hover:bg-green-800"
+            className="whitespace-nowrap rounded-md bg-green-700 px-2 py-2 text-xs font-semibold text-white transition-colors hover:bg-green-800 sm:px-4 sm:py-3 sm:text-sm"
           >
             সাইন আপ
           </Link>

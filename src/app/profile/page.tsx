@@ -16,7 +16,7 @@ const ProfilePage = () => {
   const [name, setName] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const handleNameUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleNameUpdate = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const newName = name.trim();

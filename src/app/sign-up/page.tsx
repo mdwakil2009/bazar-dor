@@ -11,10 +11,10 @@ import { useRouter } from "next/navigation";
 const SignUpPage = () => {
   const router = useRouter();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.target);
 
     const user = Object.fromEntries(formData.entries()) as {
       name: string;
@@ -30,7 +30,7 @@ const SignUpPage = () => {
     });
 
     if (error) {
-      toast.error( "রেজিস্ট্রেশন সফল হয়নি!");
+      toast.error("রেজিস্ট্রেশন সফল হয়নি!");
       console.error(error);
       return;
     }
@@ -58,8 +58,8 @@ const SignUpPage = () => {
   };
 
   return (
-    <main className="min-h-screen px-4 py-12">
-      <div className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+    <main className="min-h-screen w-full px-4 py-6 sm:px-6 sm:py-10 lg:py-12">
+      <div className="mx-auto w-full max-w-md min-w-0 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6 md:p-8">
         <div className="mb-7 text-center">
           <h1 className="text-2xl font-bold text-gray-900">
             অ্যাকাউন্ট তৈরি করুন
@@ -159,27 +159,33 @@ const SignUpPage = () => {
 
         <div className="my-6 flex items-center gap-4">
           <div className="h-px flex-1 bg-gray-200" />
-          <span className="text-sm text-gray-500">অথবা</span>
+          <span className="shrink-0 text-sm text-gray-500">
+            অথবা
+          </span>
           <div className="h-px flex-1 bg-gray-200" />
         </div>
 
-        <div className="flex gap-4 space-y-3">
+        <div className="flex w-full min-w-0 flex-col gap-3">
           <button
             type="button"
             onClick={handelGoogleSignUP}
-            className="btn btn-outline border-gray-300"
+            className="btn btn-outline flex w-full min-w-0 items-center justify-center gap-2 border-gray-300 px-2 text-sm sm:text-base"
           >
-            <FcGoogle />
-            Google দিয়ে চালিয়ে যান
+            <FcGoogle className="shrink-0" />
+            <span className="min-w-0 truncate">
+              Google দিয়ে চালিয়ে যান
+            </span>
           </button>
 
           <button
             type="button"
             onClick={handelGitHubSignIn}
-            className="btn btn-outline border-gray-300"
+            className="btn btn-outline flex w-full min-w-0 items-center justify-center gap-2 border-gray-300 px-2 text-sm sm:text-base"
           >
-            <FaGithub />
-            GitHub দিয়ে চালিয়ে যান
+            <FaGithub className="shrink-0" />
+            <span className="min-w-0 truncate">
+              GitHub দিয়ে চালিয়ে যান
+            </span>
           </button>
         </div>
 
@@ -195,7 +201,7 @@ const SignUpPage = () => {
       </div>
 
       <Link href="/">
-        <p className="mt-4 flex items-center justify-center text-gray-500 hover:underline">
+        <p className="mt-4 flex items-center justify-center text-sm text-gray-500 hover:underline">
           ← হোম পেজে ফিরে যান
         </p>
       </Link>
