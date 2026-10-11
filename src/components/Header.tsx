@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -20,7 +19,6 @@ const Header = () => {
   const [categories, setCategories] = useState<ICategoty[]>([]);
   const pathname = usePathname();
 
-  
   useEffect(() => {
     const currentDate = new Date().toLocaleDateString("bn-BD", {
       dateStyle: "full",
@@ -42,33 +40,34 @@ const Header = () => {
 
   return (
     <header className="bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between py-4">
-    
-        <Link href="/" className="flex items-center gap-4">
+      <div className="mx-auto flex max-w-6xl flex-row items-center justify-between gap-2 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4 lg:px-0">
+        <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-4">
           <Image
-            className="rounded-2xl bg-green-700 p-3"
+            className="h-12 w-12 shrink-0 rounded-2xl bg-green-700 p-2 sm:h-[60px] sm:w-[60px] sm:p-3"
             src="/logo-icon.png"
             alt="bazar-dor"
             width={60}
             height={60}
           />
 
-          <div className="flex flex-col">
-            <span className="text-2xl font-bold">বাজার দর</span>
-            <small>{date}</small>
+          <div className="flex min-w-0 flex-col">
+            <span className="text-xl font-bold sm:text-2xl">বাজার দর</span>
+            <small className="text-xs sm:text-sm">{date}</small>
           </div>
         </Link>
 
-        <Userinfo></Userinfo>
+        <div className="shrink-0">
+          <Userinfo />
+        </div>
       </div>
 
       <nav className="border-y border-gray-200">
-        <div className="mx-auto flex max-w-6xl gap-8">
+        <div className="mx-auto flex max-w-6xl gap-2 overflow-x-auto px-3 sm:gap-4 sm:px-4 lg:gap-8 lg:px-0">
           {categories.map((category) => (
             <Link
               key={category.id}
               href={`/category/${category.slug}`}
-              className={`my-2 flex gap-1 rounded-md px-2 py-2 font-bold transition-colors ${
+              className={`my-2 flex shrink-0 items-center gap-1 rounded-md px-2 py-2 text-sm font-bold transition-colors sm:px-3 sm:text-base ${
                 pathname === `/category/${category.slug}`
                   ? "bg-green-600 text-white"
                   : "hover:bg-gray-300"

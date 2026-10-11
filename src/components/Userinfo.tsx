@@ -89,7 +89,6 @@ const handleSignOut = async () => {
             aria-expanded={isOpen}
             className="btn btn-ghost flex items-center gap-2 rounded-md px-3 py-2"
           >
-            {/* Profile Avatar */}
             <div className="avatar">
               <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-green-600 text-sm font-bold text-white">
                 {user.image ? (
@@ -106,7 +105,6 @@ const handleSignOut = async () => {
               </div>
             </div>
 
-            {/* User Name */}
             <span className="max-w-32 truncate text-sm font-bold">
               {userName}
             </span>
@@ -114,7 +112,6 @@ const handleSignOut = async () => {
             <span className="text-xs text-gray-400">▾</span>
           </button>
 
-          {/* Dropdown Menu */}
           {isOpen && (
             <div className="absolute right-0 z-50 mt-2 w-64 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
               <div className="border-b border-gray-200 px-4 py-4">

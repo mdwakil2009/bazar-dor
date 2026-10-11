@@ -2,12 +2,24 @@
 import { authClient } from "@/lib/auth-client";
 import { github } from "better-auth";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
+const toastShown = useRef(false);
+
+useEffect(() => {
+  if (
+    new URLSearchParams(window.location.search).get("required") === "signin" &&
+    !toastShown.current
+  ) {
+    toastShown.current = true;
+    toast.error("আগে সাইন ইন করুন!");
+     id: "signin-required" 
+  }
+}, []);
   const onSubmit = async(e:React.SubmitEvent<HTMLElement>)=>{
     e.preventDefault()
     const formData = new FormData(e.target)
@@ -39,8 +51,9 @@ const SignInPage = () => {
     })
   }
   return (
-    <main className="min-h-screen bg-gray-50 px-4 py-12">
-      <div className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="min-h-screen  px-4 py-12">
+     <main className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+      <div>
         <div className="mb-7 text-center">
           <h1 className="text-2xl font-bold text-gray-900">
             অ্যাকাউন্ট তৈরি করুন
@@ -117,6 +130,9 @@ const SignInPage = () => {
         </p>
       </div>
     </main>
+   <Link href={"/"}><p className= "  mt-4 flex justify-center items-center hover:underline text-gray-500">← হোম পেজে ফিরে যান</p></Link>
+   </div>
+     
   );
 };
 

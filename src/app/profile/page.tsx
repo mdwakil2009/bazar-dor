@@ -1,3 +1,4 @@
+
 "use client";
 
 import { authClient } from "@/lib/auth-client";
@@ -37,8 +38,7 @@ const ProfilePage = () => {
       setName("");
     } catch (error) {
       console.error("Update failed:", error);
-    }
-    {
+    } finally {
       setIsUpdating(false);
     }
   };
@@ -49,6 +49,7 @@ const ProfilePage = () => {
     toast.success("সাইন আউট সফল হয়েছে!");
     router.push("/");
   };
+
   const userName =
     typeof user?.name === "string"
       ? user.name
@@ -64,8 +65,11 @@ const ProfilePage = () => {
 
   if (!user) {
     return (
-      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#f0f5f0]">
-        <p>প্রোফাইল দেখতে প্রথমে সাইন ইন করুন।</p>
+      <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#f0f5f0] px-4">
+        <p className="text-center text-sm sm:text-base">
+          প্রোফাইল দেখতে প্রথমে সাইন ইন করুন।
+        </p>
+
         <a href="/sign-in" className="btn btn-success text-white">
           সাইন ইন
         </a>
@@ -74,17 +78,19 @@ const ProfilePage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#f0f5f0] px-4 py-8 text-[#17231c]">
-      <div className="mx-auto max-w-4xl">
-        <h1 className="text-xl font-bold sm:text-4xl">আমার প্রোফাইল</h1>
+    <main className="min-h-screen  px-3 py-6 text-[#17231c] sm:px-5 sm:py-8 lg:px-8">
+      <div className="mx-auto w-full max-w-4xl">
+        <h1 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
+          আমার প্রোফাইল
+        </h1>
 
-        <p className="mt-1 text-lg text-gray-600">
+        <p className="mt-2 text-sm leading-6 text-gray-600 sm:text-base sm:leading-7">
           আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
         </p>
 
-        <section className="mt-8 flex flex-col justify-between gap-5 rounded-3xl border border-gray-200 bg-[#fbfdfb] p-6 shadow-sm sm:flex-row sm:items-center sm:p-8">
-          <div className="flex min-w-0 items-center gap-5">
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-green-700 text-3xl font-bold text-white">
+        <section className="mt-6 flex flex-col gap-5 rounded-2xl border border-gray-200 bg-[#fbfdfb] p-4 shadow-sm sm:mt-8 sm:rounded-3xl sm:p-6 lg:flex-row lg:items-center lg:justify-between lg:p-8">
+          <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-green-700 text-2xl font-bold text-white sm:h-20 sm:w-20 sm:rounded-2xl sm:text-3xl">
               {user.image ? (
                 <img
                   src={user.image}
@@ -98,13 +104,13 @@ const ProfilePage = () => {
               )}
             </div>
 
-            <div className="min-w-0">
-              <h2 className="text-2xl font-bold">{userName}</h2>
+            <div className="min-w-0 flex-1">
+              <h2 className=" whitespace-normal text-lg font-bold sm:text-xl lg:text-2xl">
+                {userName}
+              </h2>
 
-              <p className="mt-1 break-all text-gray-600">{user.email}</p>
-
-              <p className="mt-2 text-sm font-medium text-green-700">
-                আমার প্রোফাইল
+              <p className="mt-1 break-all text-xs text-gray-600 sm:text-sm">
+                {user.email}
               </p>
             </div>
           </div>
@@ -112,17 +118,17 @@ const ProfilePage = () => {
           <button
             type="button"
             onClick={handleSignOut}
-            className="btn btn-outline btn-error shrink-0 rounded-xl px-5"
+            className="btn btn-outline btn-error w-full rounded-xl sm:w-auto sm:self-start lg:self-auto"
           >
             ↩ সাইন আউট
           </button>
         </section>
 
-        <section className="mt-8 rounded-3xl border border-gray-200 bg-[#fbfdfb] p-6 sm:p-8">
-          <h2 className="text-2xl font-bold">তথ্য</h2>
+        <section className="mt-6 rounded-2xl border border-gray-200 bg-[#fbfdfb] p-4 sm:mt-8 sm:rounded-3xl sm:p-6 lg:p-8">
+          <h2 className="text-xl font-bold sm:text-2xl">তথ্য</h2>
 
           <form onSubmit={handleNameUpdate} className="mt-5 w-full">
-            <label htmlFor="name" className="mb-2 block text-lg">
+            <label htmlFor="name" className="mb-2 block text-sm sm:text-base">
               নাম
             </label>
 
@@ -130,9 +136,10 @@ const ProfilePage = () => {
               id="name"
               name="name"
               type="text"
+              placeholder="আপনার নাম লিখুন!"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="input input-bordered h-14 w-full rounded-xl bg-transparent text-lg"
+              className="input input-bordered h-12 w-full rounded-xl bg-transparent text-base sm:h-14 sm:text-lg"
               disabled={isUpdating}
               required
             />
@@ -140,7 +147,7 @@ const ProfilePage = () => {
             <button
               type="submit"
               disabled={isUpdating}
-              className="btn btn-success mt-4 h-14 w-full rounded-xl text-lg text-white shadow-md"
+              className="btn btn-success mt-4 h-12 w-full rounded-xl text-base text-white shadow-md sm:h-14 sm:text-lg"
             >
               {isUpdating ? (
                 <>
