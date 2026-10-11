@@ -1,11 +1,9 @@
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
 
 const ProfilePage = () => {
   const { data: session, isPending } = authClient.useSession();
@@ -17,43 +15,44 @@ const ProfilePage = () => {
   const [name, setName] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
-const handleNameUpdate = async (
-  e: React.FormEvent<HTMLFormElement>
-) => {
-  e.preventDefault();
+  const handleNameUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  const newName = name.trim();
+    const newName = name.trim();
 
-  setIsUpdating(true);
+    setIsUpdating(true);
 
-  try {
-    const { error } = await authClient.updateUser({
-      name: newName,
-    });
+    try {
+      const { error } = await authClient.updateUser({
+        name: newName,
+      });
 
-    if (error) {
-      console.error("Update error:", error);
-      return;
+      if (error) {
+        console.error("Update error:", error);
+        return;
+      }
+
+      toast.success("নাম সফলভাবে আপডেট হয়েছে!");
+
+      setName("");
+    } catch (error) {
+      console.error("Update failed:", error);
     }
-
-    toast.success("নাম সফলভাবে আপডেট হয়েছে!");
-
-    setName("");
-  } catch (error) {
-    console.error("Update failed:", error);
-  } {
-    setIsUpdating(false);
-  }
-};
-
+    {
+      setIsUpdating(false);
+    }
+  };
 
   const handleSignOut = async () => {
     await authClient.signOut();
 
-      toast.success("সাইন আউট সফল হয়েছে!");
-     router.push("/");
-    
+    toast.success("সাইন আউট সফল হয়েছে!");
+    router.push("/");
   };
+  const userName =
+    typeof user?.name === "string"
+      ? user.name
+      : user?.email?.split("@")[0] || "ব্যবহারকারী";
 
   if (isPending) {
     return (
@@ -77,9 +76,7 @@ const handleNameUpdate = async (
   return (
     <main className="min-h-screen bg-[#f0f5f0] px-4 py-8 text-[#17231c]">
       <div className="mx-auto max-w-4xl">
-        <h1 className="text-xl font-bold sm:text-4xl">
-          আমার প্রোফাইল
-        </h1>
+        <h1 className="text-xl font-bold sm:text-4xl">আমার প্রোফাইল</h1>
 
         <p className="mt-1 text-lg text-gray-600">
           আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
@@ -91,30 +88,20 @@ const handleNameUpdate = async (
               {user.image ? (
                 <img
                   src={user.image}
-                  alt={
-                    typeof user.name === "string"
-                      ? user.name
-                      : "Profile"
-                  }
+                  alt={typeof user.name === "string" ? user.name : "Profile"}
                   className="h-full w-full object-cover"
                 />
+              ) : typeof user.name === "string" && user.name.trim() ? (
+                user.name.trim().charAt(0).toUpperCase()
               ) : (
-                typeof user.name === "string" && user.name.trim()
-                  ? user.name.trim().charAt(0).toUpperCase()
-                  : "U"
+                "U"
               )}
             </div>
 
             <div className="min-w-0">
-              <h2 className=" text-2xl font-bold">
-                {typeof user.name === "string"
-                  ? user.name
-                  : "ব্যবহারকারী"}
-              </h2>
+              <h2 className="text-2xl font-bold">{userName}</h2>
 
-              <p className="mt-1 break-all text-gray-600">
-                {user.email}
-              </p>
+              <p className="mt-1 break-all text-gray-600">{user.email}</p>
 
               <p className="mt-2 text-sm font-medium text-green-700">
                 আমার প্রোফাইল
@@ -136,7 +123,7 @@ const handleNameUpdate = async (
 
           <form onSubmit={handleNameUpdate} className="mt-5 w-full">
             <label htmlFor="name" className="mb-2 block text-lg">
-            নাম
+              নাম
             </label>
 
             <input

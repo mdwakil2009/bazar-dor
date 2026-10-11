@@ -153,8 +153,8 @@ const handelGitHubSignIn = async () => {
         </div>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          অ্যাকাউন্ট আছে?{" "}
-          <Link href="/signin" className="font-semibold text-green-700">
+          অ্যাকাউন্ট আছে?
+          <Link href="/sign-in" className="font-semibold text-green-700 hover:underline">
             সাইন ইন করুন
           </Link>
         </p>

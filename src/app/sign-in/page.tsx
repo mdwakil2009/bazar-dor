@@ -110,9 +110,9 @@ const SignInPage = () => {
         </div>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          অ্যাকাউন্ট আছে?
-          <Link href="/signin" className="font-semibold text-green-700">
-            সাইন ইন করুন
+          অ্যাকাউন্ট নেই?  
+          <Link href="/sign-up" className="font-semibold text-green-700 hover:underline">
+            সাইন আপ করুন
           </Link>
         </p>
       </div>
